@@ -22,4 +22,25 @@ describe("returns the same input amount if tax values are the same", () => {
     test("returns 999 if the input is 999 and input tax and output tax are NONE", () => {
         expect(tax_conversion_test(999, "NONE", "NONE")).toBe(999);
     });
-})
+});
+
+describe("if input tax is NONE, IVA_EXCENTO, IGIC_TIPO_CERO then it doesn't modify the amount given", () => {
+    test("returns 15 if the input is 15 and input tax type is NONE and output type is NONE", () => {
+        expect(tax_conversion_test(15, "NONE", "NONE")).toBe(15);
+    });
+    test("returns 25 if the input is 25 and input tax type is IVA_EXCENTO and output type is NONE", () => {
+        expect(tax_conversion_test(25, "IVA_EXCENTO", "NONE")).toBe(25);
+    });
+    test("returns 75 if the input is 75 and input tax type is IGIC_TIPO_CERO and output type is NONE", () => {
+        expect(tax_conversion_test(75, "IGIC_TIPO_CERO", "NONE")).toBe(75);
+    });
+});
+
+describe("substracts the tax amount from the amount given", () => {
+    test("returns 79 if the input is 100 and input tax type is IVA and output type is NONE", () => {
+        expect(tax_conversion_test(100, "IVA", "NONE")).toBe(79);
+    });
+    test("returns 93 if the input is 100 and input tax type is IGIC and output type is NONE", () => {
+        expect(tax_conversion_test(100, "IGIC", "NONE")).toBe(93);
+    });
+});
