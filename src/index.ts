@@ -1,15 +1,19 @@
 const taxes_table: Record<string, number> = {
-    "NONE": 0,
+    //"NONE": 0,
     "IVA": 21,
     "IVA_REDUCIDO": 10,
     "IVA_SUPERREDUCIDO": 4,
-    "IVA_EXCENTO": 0,
+    //"IVA_EXCENTO": 0,
     "IGIC_ESPECIAL_INCREMENTADO": 13.5, 
     "IGIC_INCREMENTADO": 9.5,
     "IGIC": 7,
     "IGIC_REDUCIDO": 3,
-    "IGIC_TIPO_CERO": 0
-}
+    //"IGIC_TIPO_CERO": 0
+};
+
+const tax_free = ["NONE",
+                  "IVA_EXCENTO",
+                  "IGIC_TIPO_CERO"];
 
 function tax_conversion (amount_to_convert: number, input_tax: string, output_tax: string): number {
     if (amount_to_convert === 0) {
